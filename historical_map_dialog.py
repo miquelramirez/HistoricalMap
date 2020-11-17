@@ -22,7 +22,7 @@
 """
 # import os
 import resources
-from PyQt4.QtGui import QMainWindow, QMessageBox, QListWidgetItem, QFileDialog, QDockWidget
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QListWidgetItem, QFileDialog, QDockWidget
 
 # OLD Call for UI form
 #FORM_CLASS, _ = uic.loadUiType(os.path.join(

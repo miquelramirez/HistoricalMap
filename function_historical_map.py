@@ -29,8 +29,8 @@ import gmm_ridge as gmmr
 import scipy as sp
 from scipy import ndimage
 from osgeo import gdal, ogr, osr
-from PyQt4.QtGui import QProgressBar, QApplication
-from PyQt4 import QtCore
+from PyQt5.QtWidgets import QProgressBar, QApplication
+from PyQt5 import QtCore
 from qgis.utils import iface
 from qgis.core import QgsMessageLog
 

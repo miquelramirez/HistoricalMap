@@ -17,7 +17,7 @@ def open_data_band(filename):
     """
     data = gdal.Open(filename,gdal.GA_ReadOnly)
     if data is None:
-        print 'Impossible to open '+filename
+        print('Impossible to open '+filename)
         exit()
     nc = data.RasterXSize
     nl = data.RasterYSize
@@ -42,7 +42,7 @@ def open_data_band(filename):
     elif gdal_dt == gdal.GDT_CInt16 or gdal_dt == gdal.GDT_CInt32 or gdal_dt == gdal.GDT_CFloat32 or gdal_dt == gdal.GDT_CFloat64 :
         dt = 'complex64'
     else:
-        print 'Data type unkown'
+        print('Data type unkown')
         exit()
     
     # Initialize the array
@@ -95,7 +95,7 @@ def create_empty_tiff(outname,im,d,GeoTransform,Projection):
     elif dt == 'complex64':
         gdal_dt=gdal.GDT_CFloat64
     else:
-        print 'Data type non-suported'
+        print('Data type non-suported')
         exit()
     
     dst_ds = driver.Create(outname,nc,nl, d, gdal_dt)
@@ -134,18 +134,18 @@ def get_samples_from_roi(raster_name,roi_name):
     ## Open Raster
     raster = gdal.Open(raster_name,gdal.GA_ReadOnly)
     if raster is None:
-        print 'Impossible to open '+raster_name
+        print( 'Impossible to open '+raster_name)
         exit()
 
     ## Open ROI
     roi = gdal.Open(roi_name,gdal.GA_ReadOnly)
     if roi is None:
-        print 'Impossible to open '+roi_name
+        print( 'Impossible to open '+roi_name)
         exit()
 
     ## Some tests
     if (raster.RasterXSize != roi.RasterXSize) or (raster.RasterYSize != roi.RasterYSize):
-        print 'Images should be of the same size'
+        print( 'Images should be of the same size')
         exit()
 
     ## Get block size
@@ -184,13 +184,13 @@ def get_samples_from_roi(raster_name,roi_name):
                 Y = sp.concatenate((Y,ROI[t].reshape((t[0].shape[0],1)).astype('uint8')))
                 # Load the Variables
                 Xtp = sp.empty((t[0].shape[0],d))
-                for k in xrange(d):
+                for k in range(d):
                     band = raster.GetRasterBand(k+1).ReadAsArray(j, i, cols, lines)
                     Xtp[:,k] = band[t]
                 try:
                     X = sp.concatenate((X,Xtp))
                 except MemoryError:
-                    print 'Impossible to allocate memory: ROI too big'
+                    print( 'Impossible to allocate memory: ROI too big')
                     exit()
     
     # Clean/Close variables
@@ -220,7 +220,7 @@ def predict_image(raster_name,classif_name,classifier,mask_name=None):
     # Open Raster and get additionnal information
     raster = gdal.Open(raster_name,gdal.GA_ReadOnly)
     if raster is None:
-        print 'Impossible to open '+raster_name
+        print( 'Impossible to open '+raster_name)
         exit()
     
     # If provided, open mask
@@ -229,11 +229,11 @@ def predict_image(raster_name,classif_name,classifier,mask_name=None):
     else:
         mask = gdal.Open(mask_name,gdal.GA_ReadOnly)
         if mask is None:
-            print 'Impossible to open '+mask_name
+            print( 'Impossible to open '+mask_name)
             exit()
         # Check size
         if (raster.RasterXSize != mask.RasterXSize) or (raster.RasterYSize != mask.RasterYSize):
-            print 'Image and mask should be of the same size'
+            print( 'Image and mask should be of the same size')
             exit()   
         
     # Get the size of the image
@@ -296,7 +296,7 @@ def predict_image(raster_name,classif_name,classifier,mask_name=None):
             elif classifier['name'] is 'GMM':
                 # Load the data
                 X = sp.empty((cols*lines,d))
-                for ind in xrange(d):
+                for ind in range(d):
                     X[:,ind] = raster.GetRasterBand(int(ind+1)).ReadAsArray(j, i, cols, lines).reshape(cols*lines)
                 
                 # Do the prediction
@@ -336,18 +336,18 @@ def smooth_image(raster_name,mask_name,output_name,l,t):
     # Open Raster and get additionnal information
     raster = gdal.Open(raster_name,gdal.GA_ReadOnly)
     if raster is None:
-        print 'Impossible to open '+raster_name
+        print( 'Impossible to open '+raster_name)
         exit()
 
     # Open Mask and get additionnal information
     mask = gdal.Open(mask_name,gdal.GA_ReadOnly)
     if raster is None:
-        print 'Impossible to open '+mask_name
+        print( 'Impossible to open '+mask_name)
         exit()
 
     # Check size
     if (raster.RasterXSize != mask.RasterXSize) or (raster.RasterYSize != mask.RasterYSize) or (raster.RasterCount != mask.RasterCount):
-        print 'Image and mask should be of the same size'
+        print( 'Image and mask should be of the same size')
         exit() 
     
     # Get the size of the image
@@ -372,12 +372,12 @@ def smooth_image(raster_name,mask_name,output_name,l,t):
     dst_ds.SetGeoTransform(GeoTransform)
     dst_ds.SetProjection(Projection)
 
-    for i in xrange(0,nl,y_block_size):
+    for i in range(0,nl,y_block_size):
         if i + y_block_size < nl: # Check for size consistency in Y
             lines = y_block_size
         else:
             lines = nl - i
-        for j in xrange(0,nc,x_block_size): # Check for size consistency in X
+        for j in range(0,nc,x_block_size): # Check for size consistency in X
             if j + x_block_size < nc:
                 cols = x_block_size
             else:
@@ -386,7 +386,7 @@ def smooth_image(raster_name,mask_name,output_name,l,t):
             # Get the data
             X = sp.empty((cols*lines,d))
             M = sp.empty((cols*lines,d),dtype='int')
-            for ind in xrange(d):
+            for ind in range(d):
                 X[:,ind] = raster.GetRasterBand(int(ind+1)).ReadAsArray(j, i, cols, lines).reshape(cols*lines)
                 M[:,ind] = mask.GetRasterBand(int(ind+1)).ReadAsArray(j, i, cols, lines).reshape(cols*lines)
             # Put all masked value to 1
@@ -394,12 +394,12 @@ def smooth_image(raster_name,mask_name,output_name,l,t):
             
             # Do the smoothing
             Xf = sp.empty((cols*lines,d))
-            for ind in xrange(cols*lines): # This part can be speed up by doint it in parallel
+            for ind in range(cols*lines): # This part can be speed up by doint it in parallel
                 smoother = sm.Whittaker(x=X[ind,:],t=t,w=1-M[ind,:],order=2)
                 Xf[ind,:] = smoother.smooth(l)
 
             # Write the data
-            for ind in xrange(d):
+            for ind in range(d):
                 out = dst_ds.GetRasterBand(ind+1)
                 out.WriteArray(Xf[:,ind].reshape(lines,cols),j,i)
                 out.FlushCache()

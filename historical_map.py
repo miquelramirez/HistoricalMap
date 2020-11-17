@@ -20,9 +20,10 @@
  ***************************************************************************/
 """
 # -*- coding: utf-8 -*-
-from PyQt4 import QtGui
-from PyQt4.QtGui import QAction, QIcon, QFileDialog, QDialog
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from PyQt5 import QtGui
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QAction, QFileDialog, QDialog
+from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 import os.path
 import function_historical_map as fhm
 # Initialize Qt resources from file resources.py

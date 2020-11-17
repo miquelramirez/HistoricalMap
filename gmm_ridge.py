@@ -69,7 +69,7 @@ class CV:
                 nc = t.size
                 stepc = nc // v # Step size for each class
                 if stepc == 0:
-                    print "Not enough sample to build "+ str(v) +" folds in class " + str(i)                                    
+                    print("Not enough sample to build "+ str(v) +" folds in class " + str(i))
                 sp.random.seed(i)   # Set the random generator to the same initial state
                 tc = t[sp.random.permutation(nc)] # Random sampling of indices of samples for class i
                         
