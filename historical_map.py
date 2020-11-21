@@ -25,7 +25,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog, QDialog
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 import os.path
-import .function_historical_map as fhm
+from .function_historical_map import *
 # Initialize Qt resources from file resources.py
 #import resources
 # Import the code for the dialog
@@ -330,7 +330,7 @@ class HistoricalMap( QDialog ):
                 
                 # Do the job
                 
-                fhm.historicalFilter(inRaster,outRaster,inShapeGrey,inShapeMedian,iterMedian)
+                historicalFilter(inRaster,outRaster,inShapeGrey,inShapeMedian,iterMedian)
     
                 # Show what's done
                 self.iface.messageBar().pushMessage("New image", "Filter with "+str(inShapeGrey)+' closing size and '+str(inShapeMedian)+ ' median size', 3, 10)
@@ -391,7 +391,7 @@ class HistoricalMap( QDialog ):
                 # add model to step 3
                 self.dlg.inModel.setText(outModel)
                 # Do the job
-                fhm.learnModel(inFiltered,inTraining,inField,inSplit,inSeed,outModel,outMatrix,inClassifier)
+                learnModel(inFiltered,inTraining,inField,inSplit,inSeed,outModel,outMatrix,inClassifier)
                 
                 # show where it is saved
                 if self.dlg.outMatrix.text()!='':
@@ -439,7 +439,7 @@ class HistoricalMap( QDialog ):
                 
                 # do the job
             
-                classify=fhm.classifyImage()
+                classify = classifyImage()
                 inMinSize = inMinSize*10000 # convert ha to m squared
                 
                 try:
