@@ -6,13 +6,9 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+_fromUtf8 = lambda s: s
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
@@ -26,7 +22,7 @@ class Ui_HistoricalMap(object):
     def setupUi(self, HistoricalMap):
         HistoricalMap.setObjectName(_fromUtf8("HistoricalMap"))
         HistoricalMap.resize(558, 533)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(74)
         sizePolicy.setVerticalStretch(74)
         sizePolicy.setHeightForWidth(HistoricalMap.sizePolicy().hasHeightForWidth())
