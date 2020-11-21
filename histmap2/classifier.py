@@ -663,7 +663,7 @@ class classifyImage():
                            
                 # Load the data and Do the prediction
                 X = sp.empty((cols*lines,d))
-                for ind in xrange(d):
+                for ind in range(d):
                     X[:,ind] = raster.GetRasterBand(int(ind+1)).ReadAsArray(j, i, cols, lines).reshape(cols*lines)
                     
                 # Do the prediction
