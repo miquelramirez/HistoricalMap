@@ -31,5 +31,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    from .historical_map import HistoricalMap
+    from histmap2.main_plugin import HistoricalMap
     return HistoricalMap(iface)

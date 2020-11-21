@@ -1,4 +1,4 @@
-"""!@brief Interface between qgisForm and function_historical_map.py
+"""!@brief Interface between qgisForm and classifier.py
 ./***************************************************************************
  HistoricalMap
                                  A QGIS plugin
@@ -20,7 +20,7 @@
  ***************************************************************************/
 """
 # -*- coding: utf-8 -*-
-from histmap2 import function_dataraster as dataraster, gmm_ridge as gmmr, accuracy_index as ai
+from histmap2 import rasters as dataraster, gmm_ridge as gmmr, accuracy_index as ai
 import pickle
 import os
 import tempfile

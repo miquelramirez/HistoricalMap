@@ -1,4 +1,4 @@
-"""!@brief Interface between qgisForm and function_historical_map.py
+"""!@brief Interface between qgisForm and classifier.py
 ./***************************************************************************
  HistoricalMap
                                  A QGIS plugin
@@ -25,11 +25,11 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog, QDialog
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 import os.path
-from .function_historical_map import *
+from .classifier import *
 # Initialize Qt resources from file resources.py
 #import resources
 # Import the code for the dialog
-from .historical_map_dialog import HistoricalMapDialog
+from .dialog import HistoricalMapDialog
 
 
 from qgis.core import QgsMessageLog
@@ -295,7 +295,7 @@ class HistoricalMap( QDialog ):
         self.dlg.show()
         
     def runFilter(self):
-        """!@brief Performs the filtering of the map by calling function_historical_map.py
+        """!@brief Performs the filtering of the map by calling classifier.py
         
         First step is validating the form, then if all is ok, proceed to the filtering.
         """
@@ -341,7 +341,7 @@ class HistoricalMap( QDialog ):
                 
 
     def runTrain(self):
-        """!@brief Performs the training by calling function_historical_map.py
+        """!@brief Performs the training by calling classifier.py
                 
         First step is validating the form, then if all is ok, proceed to the training.
         Tell the user who don't have sklearn they can't use classifier except GMM.
@@ -404,7 +404,7 @@ class HistoricalMap( QDialog ):
 
             
     def runClassify(self):
-            """!@brief Performs the classification by calling function_historical_map.py
+            """!@brief Performs the classification by calling classifier.py
             Method that performs the classification
             
             First step is validating the form, then if all is ok, proceed to the classification.
