@@ -21,14 +21,13 @@
  ***************************************************************************/
 """
 # import os
-import resources
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QListWidgetItem, QFileDialog, QDockWidget
+from PyQt5.QtWidgets import QDockWidget
 
 # OLD Call for UI form
 #FORM_CLASS, _ = uic.loadUiType(os.path.join(
 #    os.path.dirname(__file__), 'historical_map_dialog_base.ui'))
 
-from historical_map_dialog_base import Ui_HistoricalMap
+from histmap2.historical_map_dialog_base import Ui_HistoricalMap
 
 # OLD Call for UI ext
 # class HistoricalMapDialog(QtGui.QDialog, FORM_CLASS):

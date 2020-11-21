@@ -2,5 +2,5 @@
 *.pyc
 *.py~
 *_filtered*
-*resources.py
+histmap2/resources.py
 
