@@ -25,11 +25,11 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog, QDialog
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 import os.path
-import function_historical_map as fhm
+import .function_historical_map as fhm
 # Initialize Qt resources from file resources.py
 #import resources
 # Import the code for the dialog
-from historical_map_dialog import HistoricalMapDialog
+from .historical_map_dialog import HistoricalMapDialog
 
 
 from qgis.core import QgsMessageLog
